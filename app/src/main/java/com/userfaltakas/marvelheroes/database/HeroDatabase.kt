@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.userfaltakas.marvelheroes.data.api.Result
 
 @Database(
     entities = [Result::class],
-    version = 1
+    version = 2
 )
+@TypeConverters(Converters::class)
 abstract class HeroDatabase : RoomDatabase() {
     abstract fun getHeroDao(): HeroDao
 
@@ -25,7 +28,7 @@ abstract class HeroDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 HeroDatabase::class.java,
-                "hero_db.db"
+                "squad_db.db"
             )
                 .fallbackToDestructiveMigration()
                 .build()

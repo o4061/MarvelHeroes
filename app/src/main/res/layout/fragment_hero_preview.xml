@@ -26,9 +26,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:elevation="2dp"
+                    android:contentDescription="@string/close_btn"
+                    android:elevation="1dp"
                     android:focusable="true"
-                    android:padding="10dp"
                     android:src="@drawable/ic_close"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -36,9 +36,10 @@
 
                 <ImageView
                     android:id="@+id/image"
-                    android:layout_width="match_parent"
-                    android:layout_height="410dp"
-                    android:scaleType="fitCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="350dp"
+                    android:contentDescription="@string/hero_image"
+                    android:scaleType="fitXY"
                     android:src="@drawable/hero"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,10 +50,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/circular_std_black"
+                    android:fontFamily="@font/circular_std"
                     android:gravity="center"
-                    android:text="Iron-Man"
-                    android:textSize="25dp"
+                    android:text="@string/iron_man"
+                    android:textSize="@dimen/title_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image" />
@@ -63,7 +64,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:paddingHorizontal="80dp"
-                    android:text="Hire to Squad"
+                    android:text="@string/hire"
+                    android:textAllCaps="false"
                     app:cornerRadius="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +76,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:fontFamily="@font/circular_std_black"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/circular_std"
                     android:paddingBottom="20dp"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/text_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/hireBtn" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

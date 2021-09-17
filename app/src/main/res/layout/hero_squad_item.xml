@@ -6,27 +6,29 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/circleImageSize"
+        android:layout_height="@dimen/circleImageSize"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/hero_image"
         android:foreground="@drawable/ic_cycle"
         android:src="@drawable/hero"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:fontFamily="@font/circular_std_black"
-        android:text="Iron-Man"
-        android:textSize="16sp"
+        android:ellipsize="end"
+        android:fontFamily="@font/circular_std"
+        android:gravity="center"
+        android:maxLines="2"
+        android:text="@string/iron_man"
+        android:textSize="@dimen/text_size"
         app:layout_constraintEnd_toEndOf="@id/image"
         app:layout_constraintStart_toStartOf="@id/image"
         app:layout_constraintTop_toBottomOf="@id/image" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

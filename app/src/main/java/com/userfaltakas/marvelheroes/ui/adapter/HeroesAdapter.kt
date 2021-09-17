@@ -17,7 +17,6 @@ class HeroesAdapter : RecyclerView.Adapter<HeroesAdapter.HeroViewHolder>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
         }

@@ -3,16 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable/ic_cicle.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable/ic_close.xml" value="0.13703703703703704" />
+        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable/ic_cycle.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/drawable/image_circle_background.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/font/s.xml" value="0.2796296296296296" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/activity_start.xml" value="0.1" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/fragment_all_heroes.xml" value="0.2" />
-        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/fragment_hero_preview.xml" value="0.264" />
+        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/fragment_hero_preview.xml" value="0.176" />
         <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/hero_list_item.xml" value="0.264" />
-        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/hero_squad_item.xml" value="0.176" />
+        <entry key="..\:/Users/userf/AndroidStudioProjects/MarvelHeroes/app/src/main/res/layout/hero_squad_item.xml" value="0.4" />
       </map>
     </option>
   </component>

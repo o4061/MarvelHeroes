@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.userfaltakas.marvelheroes.data.api.Result
 import com.userfaltakas.marvelheroes.databinding.HeroSquadItemBinding
 
 class SquadAdapter : RecyclerView.Adapter<SquadAdapter.HeroViewHolder>() {
@@ -16,7 +17,6 @@ class SquadAdapter : RecyclerView.Adapter<SquadAdapter.HeroViewHolder>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
-
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
         }
@@ -37,7 +37,7 @@ class SquadAdapter : RecyclerView.Adapter<SquadAdapter.HeroViewHolder>() {
         val binding = holder.binding
 
         holder.itemView.apply {
-            Glide.with(this).load(hero.thumbnail).into(binding.image)
+            Glide.with(this).load(hero.thumbnail?.path).into(binding.image)
             binding.name.text = hero.name
             setOnClickListener {
                 onItemClickListener?.let { it(hero) }

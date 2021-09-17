@@ -16,6 +16,9 @@
         <argument
             android:name="hero"
             app:argType="com.userfaltakas.marvelheroes.data.api.Result" />
+        <argument
+            android:name="destination"
+            app:argType="com.userfaltakas.marvelheroes.data.ui.HeroPreviewDestination" />
     </fragment>
     <fragment
         android:id="@+id/allHeroesFragment"

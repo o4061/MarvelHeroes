@@ -5,23 +5,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.userfaltakas.marvelheroes.api.Resource
 import com.userfaltakas.marvelheroes.data.api.HeroesResponse
+import com.userfaltakas.marvelheroes.data.api.Result
 import com.userfaltakas.marvelheroes.repository.HeroesRepository
 import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class StartViewModel(
-    val heroesRepository: HeroesRepository
+    private val heroesRepository: HeroesRepository
 ) : ViewModel() {
     val heroes: MutableLiveData<Resource<HeroesResponse>> = MutableLiveData()
+    val squad: MutableLiveData<List<Result>> = MutableLiveData()
     private var offset = 0
-
-    init {
-        getHeroes()
-    }
-
-    fun increaseOffset() {
-        offset += 20
-    }
 
     fun getHeroes() = viewModelScope.launch {
         heroes.postValue(Resource.Loading())
@@ -46,5 +40,8 @@ class StartViewModel(
         heroesRepository.removeHero(result)
     }
 
-    fun getSquad() = heroesRepository.getSquad()
+    fun getSquad() = viewModelScope.launch {
+        val response = heroesRepository.getSquad()
+        squad.postValue(response)
+    }
 }

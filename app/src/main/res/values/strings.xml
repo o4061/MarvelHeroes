@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Marvel Heroes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="hero_image">heroImage</string>
+    <string name="hire">Hire to Squad</string>
+    <string name="fire">Fire from Squad</string>
+    <string name="iron_man">Iron-Man</string>
+    <string name="my_squad">My Squad</string>
+    <string name="close_btn">close_btn</string>
+    <string name="no_internet">no internet connection image</string>
 </resources>
