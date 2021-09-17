@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/heroes_nav_graph"
+    app:startDestination="@id/allHeroesFragment">
+
+    <fragment
+        android:id="@+id/heroPreviewFragment"
+        android:name="com.userfaltakas.marvelheroes.ui.fragment.HeroPreviewFragment"
+        android:label="fragment_hero_preview"
+        tools:layout="@layout/fragment_hero_preview" >
+        <action
+            android:id="@+id/action_heroPreviewFragment_to_allHeroesFragment"
+            app:destination="@id/allHeroesFragment" />
+        <argument
+            android:name="hero"
+            app:argType="com.userfaltakas.marvelheroes.data.api.Result" />
+    </fragment>
+    <fragment
+        android:id="@+id/allHeroesFragment"
+        android:name="com.userfaltakas.marvelheroes.ui.fragment.AllHeroesFragment"
+        android:label="fragment_all_heroes"
+        tools:layout="@layout/fragment_all_heroes" >
+        <action
+            android:id="@+id/action_allHeroesFragment_to_heroPreviewFragment"
+            app:destination="@id/heroPreviewFragment" />
+    </fragment>
+</navigation>
