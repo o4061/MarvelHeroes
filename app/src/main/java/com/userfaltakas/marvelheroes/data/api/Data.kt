@@ -8,6 +8,6 @@ data class Data(
     val count: Int? = null,
     val limit: Int? = null,
     val offset: Int? = null,
-    val results: ArrayList<Result>? = null,
+    val results: MutableList<Result>? = null,
     val total: Int? = null
 ) : Parcelable

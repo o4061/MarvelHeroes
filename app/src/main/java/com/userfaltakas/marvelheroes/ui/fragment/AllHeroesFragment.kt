@@ -5,10 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.userfaltakas.marvelheroes.api.Resource
+import com.userfaltakas.marvelheroes.constant.Constants.PAGE_OFFSET
 import com.userfaltakas.marvelheroes.data.ui.HeroPreviewDestination
 import com.userfaltakas.marvelheroes.databinding.FragmentAllHeroesBinding
 import com.userfaltakas.marvelheroes.network.NetworkManager
@@ -23,6 +27,10 @@ class AllHeroesFragment : Fragment() {
     private lateinit var viewModel: StartViewModel
     private lateinit var allHeroesAdapter: HeroesAdapter
     private lateinit var squadAdapter: SquadAdapter
+    private var isLoading = false
+    private var isLastPage = false
+    private var isScrolling = false
+    private var networkManager = NetworkManager()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,13 +45,8 @@ class AllHeroesFragment : Fragment() {
         viewModel = (activity as StartActivity).viewModel
 
         if (viewModel.heroes.value == null) {
-            if (NetworkManager().checkNetworkAvailability(requireContext())) {
-                viewModel.getHeroes()
-            } else {
-                hideLostConnectionImage()
-            }
+            makeHeroRequest()
         }
-
         setContext()
         setUpAllHeroesRecyclerView()
         setUpSquadRecyclerView()
@@ -70,6 +73,7 @@ class AllHeroesFragment : Fragment() {
         binding.allHeroesRecyclerView.apply {
             adapter = allHeroesAdapter
             layoutManager = LinearLayoutManager(activity)
+            addOnScrollListener(this@AllHeroesFragment.scrollListener)
         }
         allHeroesAdapter.setOnItemClickListener {
             val action =
@@ -87,7 +91,11 @@ class AllHeroesFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.data?.let {
-                        allHeroesAdapter.differ.submitList(it.results)
+                        allHeroesAdapter.differ.submitList(it.results?.toList())
+                        isLastPage = viewModel.isLastPage()
+                        if (isLastPage) {
+                            removeRecyclerViewPadding()
+                        }
                     }
                 }
                 is Resource.Loading -> {
@@ -97,6 +105,7 @@ class AllHeroesFragment : Fragment() {
                     response.message?.let { message ->
                         Log.e(tag, "ERROR! $message")
                     }
+                    hideProgressBar()
                 }
             }
         })
@@ -114,6 +123,35 @@ class AllHeroesFragment : Fragment() {
         })
     }
 
+    private val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                isScrolling = true
+            }
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            var shouldPaginate: Boolean
+            layoutManager.apply {
+                val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+                val isAtLastItem =
+                    findFirstVisibleItemPosition() + childCount >= itemCount
+                val isNotAtBeginning = findFirstVisibleItemPosition() >= 0
+                val isTotalMoreThanVisible = itemCount >= PAGE_OFFSET
+                shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning
+                        && isTotalMoreThanVisible && isScrolling
+            }
+
+            if (shouldPaginate) {
+                makeHeroRequest()
+                isScrolling = false
+            }
+        }
+    }
+
     private fun showMySquad() {
         binding.squadTitle.visibility = View.VISIBLE
         binding.squadRecyclerView.visibility = View.VISIBLE
@@ -124,15 +162,23 @@ class AllHeroesFragment : Fragment() {
         binding.squadRecyclerView.visibility = View.GONE
     }
 
-    private fun hideLostConnectionImage() {
-        binding.lostConnectionImg.visibility = View.VISIBLE
-    }
-
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
+        isLoading = false
     }
 
     private fun showProgressBar() {
         binding.progressBar.visibility = View.VISIBLE
+        isLoading = true
+    }
+
+    private fun removeRecyclerViewPadding() {
+        binding.allHeroesRecyclerView.setPadding(0, 0, 0, 0)
+    }
+
+    private fun makeHeroRequest() {
+        if (networkManager.checkNetworkAvailability(requireContext())) {
+            viewModel.getHeroes()
+        }
     }
 }

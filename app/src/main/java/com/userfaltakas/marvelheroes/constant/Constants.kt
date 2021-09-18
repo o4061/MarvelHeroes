@@ -8,6 +8,7 @@ object Constants {
     const val API_KEY = "6bec36c935c9009b9c655efa7dd49635"
     private const val PRIVATE_KEY = "46eeb6faf3efb862ea34afa19b3b4658dcfa0e37"
     const val BASE_URL = "https://gateway.marvel.com/v1/public/"
+    const val PAGE_OFFSET = 20
     val ts = Timestamp(System.currentTimeMillis()).time.toString()
 
     fun hash(): String {
