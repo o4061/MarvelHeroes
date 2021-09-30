@@ -57,20 +57,28 @@ class HeroPreviewFragment : Fragment() {
             )
             setOnClickListener {
                 viewModel.addHeroToSquad(args.hero)
-                Toast.makeText(requireContext(), "Hero hired", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(), resources.getString(
+                        R.string.hero_hired
+                    ), Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
     private fun fireHeroAlertDialog(): AlertDialog {
         return AlertDialog.Builder(requireContext())
-            .setTitle("Are you sure!")
-            .setMessage("Do you want to fire the hero?")
-            .setPositiveButton("Yes") { _, _ ->
+            .setTitle(resources.getString(R.string.are_you_sure))
+            .setMessage(resources.getString(R.string.do_you_want_to_fire_hero))
+            .setPositiveButton(resources.getString(R.string.yes)) { _, _ ->
                 viewModel.removeHeroFromSquad(args.hero)
-                Toast.makeText(requireContext(), "Hero fired", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    resources.getString(R.string.hero_fired),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            .setNegativeButton("No") { _, _ ->
+            .setNegativeButton(resources.getString(R.string.no)) { _, _ ->
             }.create()
     }
 

@@ -4,7 +4,13 @@
     <string name="hero_image">heroImage</string>
     <string name="hire">Hire to Squad</string>
     <string name="fire">Fire from Squad</string>
+    <string name="hero_hired">Hero hired!</string>
+    <string name="hero_fired">Hero fired!</string>
+    <string name="are_you_sure">Are you sure!</string>
+    <string name="do_you_want_to_fire_hero">Do you want to fire the hero?</string>
     <string name="iron_man">Iron-Man</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
     <string name="my_squad">My Squad</string>
     <string name="close_btn">close_btn</string>
     <string name="no_internet">no internet connection image</string>
